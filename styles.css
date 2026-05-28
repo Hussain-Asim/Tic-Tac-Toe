@@ -20,3 +20,49 @@
   background: lightyellow;
   cursor: pointer;
 } */
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  border: 2px solid blue;
+  height: 250px;
+  width: 250px;
+
+  /* justify-content: center; */
+  /* color: red; */
+}
+
+.container>div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.cell1,
+.cell4,
+.cell7 {
+
+  border-right: 4px solid black;
+}
+
+.cell2,
+.cell5,
+.cell8 {
+
+  border-right: 4px solid black;
+}
+
+.cell1,
+.cell2,
+.cell3 {
+  border-bottom: 4px solid black;
+}
+
+.cell4,
+.cell5,
+.cell6 {
+  border-bottom: 4px solid black;
+
+}
