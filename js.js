@@ -285,7 +285,7 @@ const gameFlow = () => {
 
     //  if horizontal wins X, then a 
     //at 3rd turn: put X marker, with console win
-    function winDrawLogic(row, column, marker, cell) {
+    function winDrawLogic(row, column, marker) {
         //horizontal
         if (
 
@@ -311,7 +311,7 @@ const gameFlow = () => {
 
             if (gameboard[row][column] == 0) {
                 gameboard[row][column] = marker;
-                cell.textContent = marker;
+                // cell.textContent = marker;
                 // container.appendChild(cells);
 
                 console.log(gameboard)
@@ -389,15 +389,15 @@ const displayToPage = (() => {
         const cell8 = document.createElement("div");
         const cell9 = document.createElement("div");
 
-        cell1.classList.add("cell1");
-        cell2.classList.add("cell2");
-        cell3.classList.add("cell3");
-        cell4.classList.add("cell4");
-        cell5.classList.add("cell5");
-        cell6.classList.add("cell6");
-        cell7.classList.add("cell7");
-        cell8.classList.add("cell8");
-        cell9.classList.add("cell9");
+        cell1.classList.add("cell1", "cell");
+        cell2.classList.add("cell2", "cell");
+        cell3.classList.add("cell3", "cell");
+        cell4.classList.add("cell4", "cell");
+        cell5.classList.add("cell5", "cell");
+        cell6.classList.add("cell6", "cell");
+        cell7.classList.add("cell7", "cell");
+        cell8.classList.add("cell8", "cell");
+        cell9.classList.add("cell9", "cell");
 
         // cell1.textContent = 'cell1';
         // cell2.textContent = 'cell2';
@@ -409,7 +409,7 @@ const displayToPage = (() => {
         // cell8.textContent = 'cell8';
         // cell9.textContent = 'cell9';
 
-        //container k andr
+        //In the container
         container.appendChild(cell1);
         container.appendChild(cell2);
         container.appendChild(cell3);
@@ -420,27 +420,57 @@ const displayToPage = (() => {
         container.appendChild(cell8);
         container.appendChild(cell9);
 
+        // Write the functions that allow players to add marks to a specific spot on the board
+        // with playerOneTurn func, when click at any grid spot add 'X'
+
+        const cells = document.querySelectorAll(".cell");
+
+        //  winDrawLogic(row, column, marker)
+
+        // if (gameboard[row][column] == 0) {
+        // gameboard[row][column] = marker;
+
+        // cells.forEach((cell) => {
+        //     cell.addEventListener('click', () => {
+        //         //click any cell, it should display 'X'
+        //     //  array k hisaab se chalna hoga 
+
+        //     })
+        // })
+        let rows = 3;
+        let columns = 3;
+
+        cells.forEach((cell) => {
+            cell.addEventListener('click', () => {
+                // whatever cell i click, it should be added in array
+            })
+        })
+
+
+
+
+
         const flow = gameFlow();
         const { winDrawLogic } = flow;
 
         function playerOneTurn() {
 
             console.log('Player 1 turn');
-            winDrawLogic(0, 0, 'X', cell1)
-            winDrawLogic(0, 1, 'X', cell2)
-            winDrawLogic(1, 2, 'X', cell6)
-            winDrawLogic(2, 1, 'X', cell8)
-            winDrawLogic(2, 0, 'X', cell7)
+            // winDrawLogic(0, 0, 'X', cell1)
+            // winDrawLogic(0, 1, 'X', cell2)
+            // winDrawLogic(1, 2, 'X', cell6)
+            // winDrawLogic(2, 1, 'X', cell8)
+            // winDrawLogic(2, 0, 'X', cell7)
 
         }
 
         function playerTwoTurn() {
 
             console.log('Player 2 turn');
-            winDrawLogic(0, 2, 'O', cell3)
-            winDrawLogic(1, 1, 'O', cell5)
-            winDrawLogic(1, 0, 'O', cell4)
-            winDrawLogic(2, 2, 'O', cell9)
+            // winDrawLogic(0, 2, 'O', cell3)
+            // winDrawLogic(1, 1, 'O', cell5)
+            // winDrawLogic(1, 0, 'O', cell4)
+            // winDrawLogic(2, 2, 'O', cell9)
 
         }
 
@@ -511,4 +541,5 @@ console.log(displayToPage.renderContents())
 // container.appendChild(cell7);
 // container.appendChild(cell8);
 // container.appendChild(cell9);
+
 

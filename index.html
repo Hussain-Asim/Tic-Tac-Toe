@@ -12,38 +12,42 @@
 
 <body>
 
-
+  <!-- <div class="container">
+    <h1 class="turn">
+  </div>
+  <div class="board"></div>
+  </div> -->
 
   <script>
 
-    const calculator = () => {
-      let lastResult;
+    // const calculator = () => {
+    //   let lastResult;
 
-      const add = (a, b) => {
-        lastResult = a + b;
-        return lastResult;
-      };
-      const subtract = (a, b) => {
-        lastResult = a - b;
-        return lastResult;
-      };
-      const multiply = (a, b) => {
-        lastResult = a * b;
-        return lastResult;
-      };
-      const divide = (a, b) => {
-        lastResult = a / b;
-        return lastResult;
-      };
-      const getLastResult = () => lastResult;
+    //   const add = (a, b) => {
+    //     lastResult = a + b;
+    //     return lastResult;
+    //   };
+    //   const subtract = (a, b) => {
+    //     lastResult = a - b;
+    //     return lastResult;
+    //   };
+    //   const multiply = (a, b) => {
+    //     lastResult = a * b;
+    //     return lastResult;
+    //   };
+    //   const divide = (a, b) => {
+    //     lastResult = a / b;
+    //     return lastResult;
+    //   };
+    //   const getLastResult = () => lastResult;
 
-      return { add, subtract, multiply, divide, getLastResult };
-    };
+    //   return { add, subtract, multiply, divide, getLastResult };
+    // };
 
-    console.log(calculator.add(3, 5)); // 8
-    console.log(calculator.subtract(6, 2)); // 4
-    console.log(calculator.getLastResult()); // 4
-    console.log(calculator.multiply(14, 5534)); // 77476
+    // console.log(calculator.add(3, 5)); // 8
+    // console.log(calculator.subtract(6, 2)); // 4
+    // console.log(calculator.getLastResult()); // 4
+    // console.log(calculator.multiply(14, 5534)); // 77476
     // let thama;
 
     // const daiama = () => {
@@ -222,22 +226,20 @@
     //   const getBoard = () => board;
 
     //   const dropToken = (column, player) => {
-    //     const availableCells = board.filter((row) => row[column].getValue() === 0).map(row => row[column]);
-    //     const availableCellst = board.filter((row) => row[column].getValue() === 0);
-
-    //     console.log(availableCellst);
-    //     console.log(availableCells);
-    //     console.log(availableCells.length);
+    //     const availableCells = board
+    //       .filter((row) => row[column].getValue() === 0)
+    //       .map((row) => row[column]);
 
     //     if (!availableCells.length) return;
 
     //     const lowestRow = availableCells.length - 1;
-    //     console.log(lowestRow);
     //     board[lowestRow][column].addToken(player);
     //   };
 
     //   const printBoard = () => {
-    //     const boardWithCellValues = board.map((row) => row.map((cell) => cell.getValue()))
+    //     const boardWithCellValues = board.map((row) =>
+    //       row.map((cell) => cell.getValue())
+    //     );
     //     console.log(boardWithCellValues);
     //   };
 
@@ -255,7 +257,7 @@
 
     //   return {
     //     addToken,
-    //     getValue
+    //     getValue,
     //   };
     // }
 
@@ -268,12 +270,12 @@
     //   const players = [
     //     {
     //       name: playerOneName,
-    //       token: 1
+    //       token: 1,
     //     },
     //     {
     //       name: playerTwoName,
-    //       token: 2
-    //     }
+    //       token: 2,
+    //     },
     //   ];
 
     //   let activePlayer = players[0];
@@ -295,7 +297,7 @@
     //     board.dropToken(column, getActivePlayer().token);
 
     //     /*  This is where we would check for a winner and handle that logic,
-    //       such as a win message. */
+    //           such as a win message. */
 
     //     switchPlayerTurn();
     //     printNewRound();
@@ -306,16 +308,14 @@
     //   return {
     //     playRound,
     //     getActivePlayer,
-    //     getBoard: board.getBoard
+    //     getBoard: board.getBoard,
     //   };
     // }
 
-    // console.log(GameController()
-    // );
     // function ScreenController() {
     //   const game = GameController();
-    //   const playerTurnDiv = document.querySelector('.turn');
-    //   const boardDiv = document.querySelector('.board');
+    //   const playerTurnDiv = document.querySelector(".turn");
+    //   const boardDiv = document.querySelector(".board");
 
     //   const updateScreen = () => {
     //     // clear the board
@@ -326,22 +326,22 @@
     //     const activePlayer = game.getActivePlayer();
 
     //     // Display player's turn
-    //     playerTurnDiv.textContent = `${activePlayer.name}'s turn...`
+    //     playerTurnDiv.textContent = `${activePlayer.name}'s turn...`;
 
     //     // Render board squares
-    //     board.forEach(row => {
+    //     board.forEach((row) => {
     //       row.forEach((cell, index) => {
     //         // Anything clickable should be a button!!
     //         const cellButton = document.createElement("button");
     //         cellButton.classList.add("cell");
     //         // Create a data attribute to identify the column
     //         // This makes it easier to pass into our `playRound` function
-    //         cellButton.dataset.column = index
+    //         cellButton.dataset.column = index;
     //         cellButton.textContent = cell.getValue();
     //         boardDiv.appendChild(cellButton);
-    //       })
-    //     })
-    //   }
+    //       });
+    //     });
+    //   };
 
     //   // Add event listener for the board
     //   function clickHandlerBoard(e) {
@@ -360,10 +360,9 @@
     //   // We don't need to return anything from this module because everything is encapsulated inside this screen controller.
     // }
 
-    // ScreenController()
-    //     </script>
+    // ScreenController();
+
+  </script>
 </body>
 
 </html>
-
-<!-- 
