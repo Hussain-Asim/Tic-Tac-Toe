@@ -44,6 +44,13 @@
   /* background-color: green; */
 }
 
+.cell0,
+.cell3,
+.cell6 {
+
+  border-right: 4px solid black;
+}
+
 .cell1,
 .cell4,
 .cell7 {
@@ -51,22 +58,15 @@
   border-right: 4px solid black;
 }
 
-.cell2,
-.cell5,
-.cell8 {
-
-  border-right: 4px solid black;
-}
-
+.cell0,
 .cell1,
-.cell2,
-.cell3 {
+.cell2 {
   border-bottom: 4px solid black;
 }
 
+.cell3,
 .cell4,
-.cell5,
-.cell6 {
+.cell5 {
   border-bottom: 4px solid black;
 
 }
