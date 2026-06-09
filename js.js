@@ -26,16 +26,13 @@
 
 const Gameboard = (() => {
 
-    const rows = 3;
-    const columns = 3;
+    const columns = 9;
     let board = [];
 
-    for (let i = 0; i != rows; i++) {
-        board.push([]);
-        for (let j = 0; j != columns; j++) {
-            board[i].push(0);
-        }
+    for (let i = 0; i < columns; i++) {
+        board.push(0);
     }
+
 
     const playerOne = {
         name: "playerOne",
@@ -187,6 +184,14 @@ const displayToPage = (() => {
         // Write the functions that allow players to add marks to a specific spot on the board
         // When click at any grid spot add 'X' in array and in that grid cell.
 
+        //i have grid
+        //i have 1d array.
+        //make array control in grid
+        //when click that cell of grid, index should be added to windrawlogic
+
+        //make grid through array
+        //array for each. make elements
+
         const cell = document.querySelectorAll("div.cell");
         cell.forEach((eachCell) => {
             eachCell.addEventListener("click", () => {
@@ -231,9 +236,3 @@ const displayToPage = (() => {
 })()
 
 console.log(displayToPage.renderContents())
-
-let gameboard = [];
-for (let i = 0; i < 9; i++) {
-    gameboard.push(0);
-    console.log(gameboard);
-} 
