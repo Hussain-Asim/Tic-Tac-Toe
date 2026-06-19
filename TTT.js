@@ -1,29 +1,3 @@
-//little global code and tucked inside factories
-// If you only need a single instance of something (e.g. the board, the displayController etc.) then wrap the factory inside an IIFE (module pattern) so it cannot be used to create additional instances.
-// Each little piece of functionality should be able to fit in the game, player or board objects, save time by brainstorming about it.
-
-//right now goal is to make game work in board via console only and put all logic seperate from UI.
-
-//You have board, how u will put 'X' mark in board at any place with player 1
-
-
-//3 'X'/'O' mark, horizontally, vertically or diagonally. win
-//3 'X'/'O' mark, not horizontally, vertically or diagonally. loose
-
-//winning 3-in-a-rows and ties. then show who wins loose or draw.
-
-//little global code
-//try as much as u can in factories
-//single instance like board and display controller. wrap factory inside iife.
-
-
-// [
-// [0,0,0],
-// [0,0,0],
-// [0,0,0]
-// ]
-
-
 const Gameboard = (() => {
 
     const columns = 9;
@@ -33,54 +7,28 @@ const Gameboard = (() => {
         board.push(0);
     }
 
+    const cell0 = document.createElement("div");
+    const cell1 = document.createElement("div");
+    const cell2 = document.createElement("div");
+    const cell3 = document.createElement("div");
+    const cell4 = document.createElement("div");
+    const cell5 = document.createElement("div");
+    const cell6 = document.createElement("div");
+    const cell7 = document.createElement("div");
+    const cell8 = document.createElement("div");
 
-    const playerOne = {
-        name: "playerOne",
-    }
-    const playerTwo = {
-        name: "playerTwo",
-    }
-
-
-    return { board, playerOne, playerTwo }
+    return { board, cell0, cell1, cell2, cell3, cell4, cell5, cell6, cell7, cell8 }
 })()
 console.log(Gameboard);
 
 
 const gameFlow = () => {
-    const { board } = Gameboard;
 
-    //IF there is 'X' mark horizonally win
-    // , vertically,
-    //  diagonally
+    let { board } = Gameboard;
 
-
-    // if (horizontalWin !== 'X' ){
-    // click, go to player1 func, if there is 0 in board entry argument, then put 'X'. 
-
-    // }
-
-    //  if horizontal wins X, then a 
-    //at 3rd turn: put X mark, with console win
-    // function winDrawLogic(eachCell, index, markX, markO) {
-
-    function winDrawLogic(eachCell, index, mark) {
-
-        //with player1, X marker in same function.
-        //with player2, O marker in same function.
-        //click 1st cell, player1 turns, click again 1st cell, nobody turns.
-
-
-
-
-
-
-
-        //with turn1 X mark should go.
-        //with turn2 O mark should go.
+    function winDrawLogic(eachCell, index, mark, player1UserInput, player2UserInput, h3PlayersNameHeading, h2PlayersMarkHeading) {
 
         let column = index;
-
         //hVD 
         if (//horizontal
             board[0] == 'X' && board[1] == 'X' && board[2] == 'X' ||
@@ -124,6 +72,24 @@ const gameFlow = () => {
                 board[column] = mark;
                 eachCell.textContent = mark;
                 console.log(board)
+
+                if (mark == 'X') {
+                    // console.log("player2UserInput:", player2UserInput)
+                    // console.log("mark:", mark)
+                    h3PlayersNameHeading.textContent = `${player2UserInput + "'s Turn"}`;
+                    h2PlayersMarkHeading.textContent = 'O';
+                    console.log("PlayerTurnSwitch:", h2PlayersMarkHeading.textContent)
+                }
+                else {
+                    // console.log(player1UserInput)
+                    // console.log(mark)
+                    h3PlayersNameHeading.textContent = `${player1UserInput + "'s Turn"}`;
+                    h2PlayersMarkHeading.textContent = 'X';
+                    console.log("PlayerTurnSwitch:", h2PlayersMarkHeading.textContent)
+
+                }
+
+
             }
             // hVD after 3rd turn check
             if (//horizontal
@@ -143,6 +109,16 @@ const gameFlow = () => {
 
                 board[2] == mark && board[4] == mark && board[6] == mark) {
                 console.log('win')
+                console.log(`${mark}`)
+
+                if (mark == 'X') {
+                    h3PlayersNameHeading.textContent = `${player1UserInput} Wins`;
+                    h2PlayersMarkHeading.textContent = `${mark}`;
+                }
+                else {
+                    h3PlayersNameHeading.textContent = `${player2UserInput} Wins`;
+                    h2PlayersMarkHeading.textContent = `${mark}`;
+                }
             }
             //if at last standing cell it wins then not draw 
             //if win then not draw
@@ -157,43 +133,100 @@ const gameFlow = () => {
 
             ) {
                 console.log("It's a draw")
+                h3PlayersNameHeading.textContent = '';
+                h2PlayersMarkHeading.textContent = "Its a draw"
             }
         }
+        console.log('latest', board)
+        function restartBtn(player1UserInput, h2PlayersMarkHeading, h3PlayersNameHeading) {
 
+            const restartBtn = document.createElement("startGameBtn");
+            restartBtn.classList.add('restartBtn');
+            document.body.appendChild(restartBtn);
+            console.log(restartBtn);
+            restartBtn.textContent = 'Reset and Restart Game';
 
+            restartBtn.addEventListener("click", () => {
+                //when click restartBtn then TTT board 
+                // should reset
+                //board should be zero and each cell should be ''
 
+                // board should be zero
+                //now every Cell textContent should be zero
 
+                //if X win, then O turn and if O win then X turn
 
+                h2PlayersMarkHeading.textContent = 'X';
+                h3PlayersNameHeading.textContent = `${player1UserInput + "'s Turn"}`;
+                console.log("PlayerTurnSwitch:", h2PlayersMarkHeading.textContent)
+
+                // let { board } = winDrawLogic();
+                board = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+                console.log(board)
+                const { cell0, cell1, cell2, cell3, cell4, cell5, cell6, cell7, cell8 } = Gameboard;
+
+                cell0.textContent = '';
+                cell1.textContent = '';
+                cell2.textContent = '';
+                cell3.textContent = '';
+                cell4.textContent = '';
+                cell5.textContent = '';
+                cell6.textContent = '';
+                cell7.textContent = '';
+                cell8.textContent = '';
+
+            })
+        }
+        return { board, restartBtn }
     } //winDrawLogic() closed bracket
     return { winDrawLogic }
 }//gameflow() closed bracket
 
 
-const displayToPage = (() => {
-
-    const renderContents = () => {
-        // firstPageRemove();
-        // from board array to webpage.
-
-        //css grid make 3*3 
-        // make div container and elements in dom
-        //add console logic 'X', 'O' in it 
-
-        // const container = document.createElement("div");
-
-        // container.classList.add("container");
-        // document.body.appendChild(container);
+const displayToPageFunctions = (() => {
 
 
-        const cell0 = document.createElement("div");
-        const cell1 = document.createElement("div");
-        const cell2 = document.createElement("div");
-        const cell3 = document.createElement("div");
-        const cell4 = document.createElement("div");
-        const cell5 = document.createElement("div");
-        const cell6 = document.createElement("div");
-        const cell7 = document.createElement("div");
-        const cell8 = document.createElement("div");
+    const firstWholePageDiv = document.querySelector(".firstWholePageDiv");
+    const startGameBtn = document.querySelector(".startGameBtn");
+
+    let firstUserInput = document.querySelector(".firstUserInput");
+    let secondUserInput = document.querySelector(".secondUserInput");
+
+    const h3PlayersNameHeading = document.querySelector(".playerName");
+    const h2PlayersMarkHeading = document.querySelector(".mark");
+
+    let { winDrawLogic } = gameFlow();
+    let { board, restartBtn } = winDrawLogic()
+    // function 
+
+    function firstPageRemove() {
+
+        startGameBtn.addEventListener("click", (e) => {
+            if (!firstWholePageDiv.checkValidity()) {
+                return;
+            }
+            const player1UserInput = firstUserInput.value;
+            const player2UserInput = secondUserInput.value;
+
+            firstWholePageDiv.remove();
+            h3PlayersNameHeading.textContent = `${player1UserInput + "'s Turn"}`;
+            h2PlayersMarkHeading.textContent = 'X';
+            secondPage(player1UserInput, player2UserInput, h3PlayersNameHeading, h2PlayersMarkHeading);
+
+            restartBtn(player1UserInput, h2PlayersMarkHeading, h3PlayersNameHeading);
+        })
+    }
+
+    function secondPage(player1UserInput, player2UserInput, h3PlayersNameHeading, h2PlayersMarkHeading) {
+
+        const containerOfTTTBoard = document.createElement("div");
+
+        containerOfTTTBoard.classList.add("containerOfTTTBoard");
+        document.body.appendChild(containerOfTTTBoard);
+
+        let { cell0, cell1, cell2, cell3, cell4, cell5, cell6, cell7, cell8 } = Gameboard;
+        // let { cell0, cell1, cell2, cell3, cell4, cell5, cell6, cell7, cell8 } = cellsElement();
+        // console.log(cell0)
 
         cell0.classList.add("cell0", "cell");
         cell1.classList.add("cell1", "cell");
@@ -205,81 +238,27 @@ const displayToPage = (() => {
         cell7.classList.add("cell7", "cell");
         cell8.classList.add("cell8", "cell");
 
-        //In the container
-        container.appendChild(cell0);
-        container.appendChild(cell1);
-        container.appendChild(cell2);
-        container.appendChild(cell3);
-        container.appendChild(cell4);
-        container.appendChild(cell5);
-        container.appendChild(cell6);
-        container.appendChild(cell7);
-        container.appendChild(cell8);
-        //clean interface,
-        //show player 1,2 with textContent to add
-        // A div inputContainer
+        //In the containerOfTTTBoard
+        containerOfTTTBoard.appendChild(cell0);
+        containerOfTTTBoard.appendChild(cell1);
+        containerOfTTTBoard.appendChild(cell2);
+        containerOfTTTBoard.appendChild(cell3);
+        containerOfTTTBoard.appendChild(cell4);
+        containerOfTTTBoard.appendChild(cell5);
+        containerOfTTTBoard.appendChild(cell6);
+        containerOfTTTBoard.appendChild(cell7);
+        containerOfTTTBoard.appendChild(cell8);
 
-        // A div firstInputBlock
-        // A label firstLabel
-        // input firstInput
-        // A div secondInputBlock
-        // A label secondLabel
-        // input secondInput
+        // const { winDrawLogic } = gameFlow();
 
-        //Clean up the interface to allow players to put in their names, include a button to start/restart the game and add a display element that shows the results upon game end!
+        // let playerTurn = 'X';
 
-        // click start and firstPageDiv remove and container should be added.
-        function firstPageRemove() {
-            const firstPageDiv = document.querySelector(".firstPageDiv");
-            const button = document.querySelector("button")
-            button.addEventListener("click", () => {
-                //                 const element = document.getElementById("idOfParent");
-                // while (element.firstChild) {
-                //   element.removeChild(element.firstChild);
-                // }
-                firstPageDiv.remove()
-
-
-
-            })
-
-            // const { playerOne, playerTwo } = Gameboard;
-            // const container 
-
-        }
-
-
-        firstPageRemove();
-
-
-        const { winDrawLogic } = gameFlow();
-
-        //i have grid
-        //i have 1d array.
-        //make array control in grid
-
-        //make grid through array
-        //array for each. make elements
-
-        //when click that cell of grid, X should be shown in array as well as in cell. 
-
-        //start with playerOneTurn(in end add switch to player 2 turn) windraw logic with X. 
-        //with playerTwoTurn 
-
-        // const playerOne = 'Player 1';
-        // const playerTwo = 'Player 2'
-
-
-
-        let turn = 1;
-        const cell = document.querySelectorAll("div.cell");
-        cell.forEach((eachCell, index) => {
+        const AllCells = document.querySelectorAll("div.cell");
+        AllCells.forEach((eachCell, index) => {
             eachCell.addEventListener("click", () => {
+                // console.log(h2PlayersMarkHeading)
+                if (h2PlayersMarkHeading.textContent == 'X') {
 
-                if (turn === 1) {
-
-                    //after 2 1 if eachCell is still X, O then return
-                    //after win if click at empty cells, then none.
 
                     if (eachCell.textContent == 'X' || eachCell.textContent == 'O') {
                         return
@@ -287,44 +266,55 @@ const displayToPage = (() => {
 
                     else {
 
-
-                        console.log(turn);
-                        winDrawLogic(eachCell, index, 'X')
+                        console.log("PlayerTurn:", h2PlayersMarkHeading.textContent);
+                        winDrawLogic(eachCell, index, 'X', player1UserInput, player2UserInput, h3PlayersNameHeading, h2PlayersMarkHeading)
                         if (eachCell.textContent == 0) {
                             return
                         }
-                        else {
+                        // else {
 
-                            turn = 2;
-                            console.log(turn);
-                        }
+                        //     h2PlayersMarkHeading.textContent = 'O';
+                        //     console.log("PlayerTurnSwitch:", h2PlayersMarkHeading.textContent);
+
+                        // }
+
                     }
                 }
-                else if (turn === 2) {
+
+
+                else if (h2PlayersMarkHeading.textContent == 'O') {
 
                     if (eachCell.textContent == 'X' || eachCell.textContent == 'O') {
                         return
                     }
                     else {
 
-                        console.log(turn);
-                        winDrawLogic(eachCell, index, 'O')
+                        console.log("PlayerTurn:", h2PlayersMarkHeading.textContent);
+                        winDrawLogic(eachCell, index, 'O', player1UserInput, player2UserInput, h3PlayersNameHeading, h2PlayersMarkHeading)
                         if (eachCell.textContent == 0) {
                             return
                         }
-                        else {
-                            turn = 1;
-                            console.log(turn);
-                        }
+                        // else {
+                        //     h2PlayersMarkHeading.textContent = 'X';
+                        //     console.log("PlayerTurnSwitch:", h2PlayersMarkHeading.textContent);
+                        // }
                     }
                 }
 
             })
         })
+
     }
-    return { renderContents }
+
+
+    firstPageRemove();
+
+    // const renderContents = () => {
+
+    // }
+
+    // return { renderContents }
+
 })();
 
-console.log(displayToPage.renderContents())
-
-
+// console.log(displayToPageFunctions())
